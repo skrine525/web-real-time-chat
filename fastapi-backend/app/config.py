@@ -1,0 +1,5 @@
+from os import getenv
+
+
+SECRET_KEY = getenv("BACKEND_SECRET_KEY")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(getenv("BACKEND_ACCESS_TOKEN_EXPIRE_MINUTES"))

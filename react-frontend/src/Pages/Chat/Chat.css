@@ -1,0 +1,112 @@
+.chat-container {
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    height: 100vh; /* Чат занимает всю высоту */
+    display: flex;
+    flex-direction: column;
+    width: 100vw; /* Чат занимает всю ширину */
+}
+
+.chat-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-bottom: 2px solid #0056b3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    z-index: 1000;
+}
+
+.header-title h1 {
+    margin: 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-right span {
+    margin-right: 20px;
+}
+
+.header-right button {
+    padding: 5px 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.header-right button:hover {
+    background-color: #ff1a1a;
+}
+
+.chat-messages {
+    flex-grow: 1; /* Занимает всю оставшуюся высоту */
+    overflow-y: auto; /* Прокрутка для сообщений */
+    padding: 20px;
+    margin-top: 60px; /* Отступ, чтобы сообщения не пересекались с заголовком */
+    width: 100vw; /* Сообщения занимают всю ширину окна */
+    box-sizing: border-box;
+}
+
+.message {
+    margin-bottom: 10px;
+    max-width: 70%; /* Сообщения занимают до 70% ширины окна */
+    word-wrap: break-word; /* Перенос текста внутри сообщения */
+}
+
+.sent {
+    align-self: flex-end;
+    background-color: #e1f5fe; /* Цвет отправленных сообщений */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: right;
+}
+
+.received {
+    align-self: flex-start;
+    background-color: #ffecb3; /* Цвет полученных сообщений */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #eaeaea;
+    width: 100%; /* Ввод занимает всю ширину */
+    box-sizing: border-box;
+}
+
+.chat-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #eaeaea;
+    border-radius: 4px;
+}
+
+.chat-input button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.chat-input button:hover {
+    background-color: #0056b3;
+}

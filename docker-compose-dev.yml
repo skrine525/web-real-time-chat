@@ -1,0 +1,50 @@
+services:
+  chat_postgres:
+    container_name: chat_postgres
+    image: postgres:16.1
+    environment:
+      POSTGRES_DB: chat
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: apppassword
+      PGDATA: /data/postgres
+    volumes:
+       - ./data/postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    restart: no
+  chat_redis:
+    image: redis:7.2
+    container_name: chat_redis
+    volumes:
+      - ./data/redis/dаta:/data
+    ports:
+      - 6379:6379
+    restart: no
+  chat_backend:
+    build: ./fastapi-backend
+    image: chat_backend
+    container_name: chat_backend
+    env_file: "app.env"
+    command: ["poetry", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--reload"]
+    volumes:
+      - ./fastapi-backend:/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - chat_postgres
+      - chat_redis
+    restart: no
+  chat_frontend:
+    build: ./react-frontend
+    container_name: chat_frontend
+    command: ["npm", "start"]
+    volumes:
+       - ./react-frontend/src:/app/src
+       - ./react-frontend/public:/app/public
+    ports:
+      - 3000:3000
+    environment:
+      REACT_APP_BACKEND_URL: "http://ubuntuhost:8000/"
+    depends_on:
+      - chat_backend
+    restart: no

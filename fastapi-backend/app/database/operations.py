@@ -1,9 +1,9 @@
+from typing import List
+from passlib.context import CryptContext
 from sqlalchemy import or_
 from sqlalchemy.orm import Session
-from passlib.context import CryptContext
 from app.schemas import user as user_schema
 from app.database import models
-from typing import List
 
 
 # Создания контекста хэширования паролей

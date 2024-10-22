@@ -1,13 +1,12 @@
 import asyncio
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from app.database import engine
-from app.database.models import Base
+from fastapi.middleware.cors import CORSMiddleware
 from app.routers.auth import router as auth_router
 from app.routers.users import router as users_router
 from app.routers.chats import router as chats_router
 from app.routers.chats import redis_listener as chats_redis_listener
-from fastapi.middleware.cors import CORSMiddleware
+from app.metadata import tags_metadata
 
 
 # Lifespan для FastAPI
@@ -25,7 +24,7 @@ async def lifespan(app: FastAPI):
         pass
 
 
-app = FastAPI(lifespan=lifespan)        # Приложение FastAPI
+app = FastAPI(lifespan=lifespan,tags_metadata=tags_metadata)        # Приложение FastAPI
 
 # Отключаем CORS
 app.add_middleware(

@@ -1,7 +1,7 @@
+from . import user
 from pydantic import BaseModel
 from typing import List
 from enum import Enum
-from . import user
 
 
 # Типы сообщений
